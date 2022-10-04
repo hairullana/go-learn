@@ -6,6 +6,7 @@ import (
 	"strconv"
 )
 
+// deklarasi struct Alamat
 type Alamat struct {
 	kelurahan string
 	kecamatan string
@@ -13,6 +14,7 @@ type Alamat struct {
 	provinsi  string
 }
 
+// deklarasi struct Person
 type Person struct {
 	nama      string
 	alamat    Alamat
@@ -20,6 +22,7 @@ type Person struct {
 	alasan    string
 }
 
+// set data ke persons dari struct Person
 var persons = []Person{
 	{
 		nama: "Hairul Lana",
@@ -133,16 +136,22 @@ var persons = []Person{
 	},
 }
 
+// main function
 func main() {
-	var index, _ = strconv.Atoi(os.Args[1])
-	var lenPersons int = len(persons)
-	if index > lenPersons {
-		fmt.Println("Data siswa hanya berisi 10 data saja")
-	} else {
-		showPersonData(index)
+	if len(os.Args) > 1 { // jika user mengisi argumen
+		// ambil argumen indeks 1
+		var index, _ = strconv.Atoi(os.Args[1])
+		if index >= len(persons) { // jika argumen indeks lebih dari panjang persons, return pesan ...
+			fmt.Println("Data siswa hanya berisi 10 data saja, isi argumen 1 -", len(persons)-1)
+		} else { // tampilkan data siswa sesuai indeks
+			showPersonData(index)
+		}
+	} else { // jika user tidak mengisi argumen
+		fmt.Println("Berikan argumen / parameter indeks data siswa")
 	}
 }
 
+// fungsi menampilkan data siswa sesuai indeks
 func showPersonData(index int) {
 	fmt.Println("Nama: ", persons[index].nama)
 	fmt.Printf("Alamat: %s, %s, %s, %s\n", persons[index].alamat.kelurahan, persons[index].alamat.kecamatan, persons[index].alamat.kota, persons[index].alamat.provinsi)
