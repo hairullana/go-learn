@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
 
 type Alamat struct {
@@ -19,126 +20,132 @@ type Person struct {
 	alasan    string
 }
 
-func main() {
-	var Person = []Person{
-		{
-			nama: "Hairul Lana",
-			alamat: Alamat{
-				kelurahan: "Sengkidu",
-				kecamatan: "Manggis",
-				kota:      "Karangasem",
-				provinsi:  "Bali",
-			},
-			pekerjaan: "Software Engineer",
-			alasan:    "Karena ingin mempelajari bahasa baru",
+var persons = []Person{
+	{
+		nama: "Hairul Lana",
+		alamat: Alamat{
+			kelurahan: "Sengkidu",
+			kecamatan: "Manggis",
+			kota:      "Karangasem",
+			provinsi:  "Bali",
 		},
-		{
-			nama: "Hairul Lana",
-			alamat: Alamat{
-				kelurahan: "Sengkidu",
-				kecamatan: "Manggis",
-				kota:      "Karangasem",
-				provinsi:  "Bali",
-			},
-			pekerjaan: "Software Engineer",
-			alasan:    "Karena ingin mempelajari bahasa baru",
+		pekerjaan: "Software Engineer",
+		alasan:    "Karena ingin mempelajari bahasa baru",
+	},
+	{
+		nama: "Surya Anto",
+		alamat: Alamat{
+			kelurahan: "Manggarai",
+			kecamatan: "Manggarai",
+			kota:      "Jakarta Selatan",
+			provinsi:  "Jakarta",
 		},
-		{
-			nama: "Hairul Lana",
-			alamat: Alamat{
-				kelurahan: "Sengkidu",
-				kecamatan: "Manggis",
-				kota:      "Karangasem",
-				provinsi:  "Bali",
-			},
-			pekerjaan: "Software Engineer",
-			alasan:    "Karena ingin mempelajari bahasa baru",
+		pekerjaan: "Barista",
+		alasan:    "Karena ingin mempelajari pemrograman",
+	},
+	{
+		nama: "Firdaus Zulzul",
+		alamat: Alamat{
+			kelurahan: "Kebun Raya",
+			kecamatan: "Kebun Raya",
+			kota:      "Surabaya",
+			provinsi:  "Jawa Timur",
 		},
-		{
-			nama: "Hairul Lana",
-			alamat: Alamat{
-				kelurahan: "Sengkidu",
-				kecamatan: "Manggis",
-				kota:      "Karangasem",
-				provinsi:  "Bali",
-			},
-			pekerjaan: "Software Engineer",
-			alasan:    "Karena ingin mempelajari bahasa baru",
+		pekerjaan: "IT Support",
+		alasan:    "Ingin switch karir jadi IT Programmer",
+	},
+	{
+		nama: "Hairul Lana",
+		alamat: Alamat{
+			kelurahan: "Sengkidu",
+			kecamatan: "Manggis",
+			kota:      "Karangasem",
+			provinsi:  "Bali",
 		},
-		{
-			nama: "Hairul Lana",
-			alamat: Alamat{
-				kelurahan: "Sengkidu",
-				kecamatan: "Manggis",
-				kota:      "Karangasem",
-				provinsi:  "Bali",
-			},
-			pekerjaan: "Software Engineer",
-			alasan:    "Karena ingin mempelajari bahasa baru",
+		pekerjaan: "Software Engineer",
+		alasan:    "Karena ingin mempelajari bahasa baru",
+	},
+	{
+		nama: "Karel Leo Arnaldo",
+		alamat: Alamat{
+			kelurahan: "Kaliwangi",
+			kecamatan: "Kaliwangi",
+			kota:      "Banyuwangi",
+			provinsi:  "Jawa Timur",
 		},
-		{
-			nama: "Hairul Lana",
-			alamat: Alamat{
-				kelurahan: "Sengkidu",
-				kecamatan: "Manggis",
-				kota:      "Karangasem",
-				provinsi:  "Bali",
-			},
-			pekerjaan: "Software Engineer",
-			alasan:    "Karena ingin mempelajari bahasa baru",
+		pekerjaan: "Belum ada",
+		alasan:    "Ingin berhenti merokok",
+	},
+	{
+		nama: "Indah Sari",
+		alamat: Alamat{
+			kelurahan: "Buntu Utara",
+			kecamatan: "Buntu Utara",
+			kota:      "Cirebon",
+			provinsi:  "Banten",
 		},
-		{
-			nama: "Hairul Lana",
-			alamat: Alamat{
-				kelurahan: "Sengkidu",
-				kecamatan: "Manggis",
-				kota:      "Karangasem",
-				provinsi:  "Bali",
-			},
-			pekerjaan: "Software Engineer",
-			alasan:    "Karena ingin mempelajari bahasa baru",
+		pekerjaan: "Marketing",
+		alasan:    "Bosan menjadi marketing",
+	},
+	{
+		nama: "Karlina Surya Atmaja",
+		alamat: Alamat{
+			kelurahan: "Wongso",
+			kecamatan: "Wongso Utama",
+			kota:      "Yogyakarta",
+			provinsi:  "DIY",
 		},
-		{
-			nama: "Hairul Lana",
-			alamat: Alamat{
-				kelurahan: "Sengkidu",
-				kecamatan: "Manggis",
-				kota:      "Karangasem",
-				provinsi:  "Bali",
-			},
-			pekerjaan: "Software Engineer",
-			alasan:    "Karena ingin mempelajari bahasa baru",
+		pekerjaan: "Wirausaha",
+		alasan:    "Jadi programmer karena jualan sepi",
+	},
+	{
+		nama: "Wina Artha Setiawati",
+		alamat: Alamat{
+			kelurahan: "Mertani",
+			kecamatan: "Mertani",
+			kota:      "Aceh Barat",
+			provinsi:  "Aceh",
 		},
-		{
-			nama: "Hairul Lana",
-			alamat: Alamat{
-				kelurahan: "Sengkidu",
-				kecamatan: "Manggis",
-				kota:      "Karangasem",
-				provinsi:  "Bali",
-			},
-			pekerjaan: "Software Engineer",
-			alasan:    "Karena ingin mempelajari bahasa baru",
+		pekerjaan: "Pengusaha",
+		alasan:    "Mengisi waktu luang",
+	},
+	{
+		nama: "Muhammad Firdaus Suhartana",
+		alamat: Alamat{
+			kelurahan: "Mangojo",
+			kecamatan: "Manggojo",
+			kota:      "Flores",
+			provinsi:  "NTT",
 		},
-		{
-			nama: "Hairul Lana",
-			alamat: Alamat{
-				kelurahan: "Sengkidu",
-				kecamatan: "Manggis",
-				kota:      "Karangasem",
-				provinsi:  "Bali",
-			},
-			pekerjaan: "Software Engineer",
-			alasan:    "Karena ingin mempelajari bahasa baru",
+		pekerjaan: "Petani Cabai",
+		alasan:    "Ingin pekerjaan baru, lahan saya kering",
+	},
+	{
+		nama: "Ahmad Rivaldo Atmaja",
+		alamat: Alamat{
+			kelurahan: "Dukumu",
+			kecamatan: "Dukumu",
+			kota:      "Jayapura",
+			provinsi:  "Papua",
 		},
-	}
+		pekerjaan: "Atlet Sepak Bola",
+		alasan:    "Mengisi waktu liburan saya",
+	},
+}
 
-	if os.Args[0] {
-		var index int = os.Args[0]
+func main() {
+	var index, _ = strconv.Atoi(os.Args[1])
+	var lenPersons int = len(persons)
+	if index > lenPersons {
+		fmt.Println("Data siswa hanya berisi 10 data saja")
+	} else {
 		showPersonData(index)
 	}
 }
 
 func showPersonData(index int) {
-	fmt.Println("Nama: ", Person)
+	fmt.Println("Nama: ", persons[index].nama)
+	fmt.Printf("Alamat: %s, %s, %s, %s\n", persons[index].alamat.kelurahan, persons[index].alamat.kecamatan, persons[index].alamat.kota, persons[index].alamat.provinsi)
+	fmt.Println("Pekerjaan: ", persons[index].pekerjaan)
+	fmt.Println("Alasan Belajar Golang: ", persons[index].alasan)
 }
